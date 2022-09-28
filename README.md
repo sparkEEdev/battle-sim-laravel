@@ -1,5 +1,5 @@
 # Battle-Sim-Laravel
-Sample laravel app that scrapes and stores food facts.
+Sample laravel app that simulates army battles.
 
 ### Installation steps;
 
