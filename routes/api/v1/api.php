@@ -3,7 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Api\v1\FoodGroupController;
+use App\Http\Controllers\Api\v1\ArmyController;
+use App\Http\Controllers\Api\v1\GameController;
 use App\Http\Controllers\Api\v1\Auth\NewPasswordController;
 use App\Http\Controllers\Api\v1\Auth\VerifyEmailController;
 use App\Http\Controllers\Api\v1\Auth\RegisteredUserController;
@@ -12,8 +13,6 @@ use App\Http\Controllers\Api\v1\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Api\v1\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Api\v1\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Api\v1\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Api\v1\FoodServingSizeController;
-use App\Http\Controllers\Api\v1\FoodController;
 
 
 /*
@@ -43,6 +42,8 @@ Route::group([], function () {
 
     });
 
+    Route::apiResource('games', GameController::class)->only(['index', 'store', 'show']);
+    Route::apiResource('armies', ArmyController::class)->only(['store']);
 });
 
 Route::group(['middleware' => ['authenticated']], function () {

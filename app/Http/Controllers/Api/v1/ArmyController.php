@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Army;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Actions\Army\CreateArmyAction;
+use App\Http\Requests\v1\CreateArmyRequest;
 
 
 class ArmyController extends Controller
@@ -35,9 +37,9 @@ class ArmyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateArmyRequest $request, CreateArmyAction $createArmyAction)
     {
-        //
+        return $createArmyAction->execute($request);
     }
 
     /**

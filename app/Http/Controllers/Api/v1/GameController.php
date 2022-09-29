@@ -4,18 +4,21 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Game;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Actions\Game\CreateGameAction;
+use App\Actions\Game\GetGamesAction;
 
 class GameController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \App\Http\Resources\v1\Game\GameCollection
      */
-    public function index()
+    public function index(Request $request, GetGamesAction $getGamesAction)
     {
-        //
+        return $getGamesAction->execute($request);
     }
 
     /**
@@ -32,11 +35,12 @@ class GameController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Actions\Game\CreateGameAction;
+     * @return \App\Http\Resources\v1\Game\GameResource;
      */
-    public function store(Request $request)
+    public function store(Request $request, CreateGameAction $createGameAction)
     {
-        //
+        return $createGameAction->execute();
     }
 
     /**
