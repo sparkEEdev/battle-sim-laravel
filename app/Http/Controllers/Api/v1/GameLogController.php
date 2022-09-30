@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Models\Army;
+use App\Models\GameLog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Actions\Army\CreateArmyAction;
-use App\Http\Requests\v1\CreateArmyRequest;
+use App\Actions\GameLog\GetGameLogsAction;
+use App\Http\Resources\v1\GameLog\GameLogCollection;
 
-
-class ArmyController extends Controller
+class GameLogController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return GameLogCollection
      */
-    public function index()
+    public function index(Request $request, GetGameLogsAction $getGameLogsAction)
     {
-        //
+        return $getGameLogsAction->execute($request);
     }
 
     /**
@@ -37,18 +36,18 @@ class ArmyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateArmyRequest $request, CreateArmyAction $createArmyAction)
+    public function store(Request $request)
     {
-        return $createArmyAction->execute($request);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Army  $army
+     * @param  \App\Models\GameLog  $gameLog
      * @return \Illuminate\Http\Response
      */
-    public function show(Army $army)
+    public function show(GameLog $gameLog)
     {
         //
     }
@@ -56,10 +55,10 @@ class ArmyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Army  $army
+     * @param  \App\Models\GameLog  $gameLog
      * @return \Illuminate\Http\Response
      */
-    public function edit(Army $army)
+    public function edit(GameLog $gameLog)
     {
         //
     }
@@ -68,10 +67,10 @@ class ArmyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Army  $army
+     * @param  \App\Models\GameLog  $gameLog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Army $army)
+    public function update(Request $request, GameLog $gameLog)
     {
         //
     }
@@ -79,10 +78,10 @@ class ArmyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Army  $army
+     * @param  \App\Models\GameLog  $gameLog
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Army $army)
+    public function destroy(GameLog $gameLog)
     {
         //
     }

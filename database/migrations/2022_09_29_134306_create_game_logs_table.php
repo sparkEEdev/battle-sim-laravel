@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArmiesTable extends Migration
+class CreateGameLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,12 @@ class CreateArmiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('armies', function (Blueprint $table) {
+        Schema::create('game_logs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('game_id');
             $table->foreign('game_id')->references('id')->on('games');
-            $table->string('name');
-            $table->integer('initial_units');
-            $table->integer('units');
-            $table->enum('attack_strategy', ['random', 'weakest', 'strongest'])->default('random');
-            $table->tinyInteger('ordinal')->unsigned();
+            $table->string('message');
             $table->timestamps();
-
-            $table->unique(['game_id', 'name']);
         });
     }
 
@@ -35,6 +29,6 @@ class CreateArmiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('armies');
+        Schema::dropIfExists('game_logs');
     }
 }
