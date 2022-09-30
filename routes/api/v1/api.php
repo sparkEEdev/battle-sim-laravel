@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\v1\ArmyController;
 use App\Http\Controllers\Api\v1\GameController;
+use App\Http\Controllers\Api\v1\GameLogController;
 use App\Http\Controllers\Api\v1\Auth\NewPasswordController;
 use App\Http\Controllers\Api\v1\Auth\VerifyEmailController;
 use App\Http\Controllers\Api\v1\Auth\RegisteredUserController;
@@ -46,6 +47,8 @@ Route::group([], function () {
 
     Route::post('games/{game}/attack', [GameController::class, 'attack']);
     Route::post('games/{game}/reset', [GameController::class, 'reset']);
+
+    Route::apiResource('game-logs', GameLogController::class)->only(['index']);
 
     Route::apiResource('armies', ArmyController::class)->only(['store']);
 });
