@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Actions\Game\CreateGameAction;
 use App\Actions\Game\GetGamesAction;
+use App\Actions\Game\RunAttackGameAction;
+use App\Actions\Game\ResetGameAction;
 
 class GameController extends Controller
 {
@@ -86,5 +88,25 @@ class GameController extends Controller
     public function destroy(Game $game)
     {
         //
+    }
+
+    /**
+     *
+     * @param  int  $gameid
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function attack(int $game, RunAttackGameAction $runAttackGameAction)
+    {
+        return $runAttackGameAction->execute($game);
+    }
+
+    /**
+     *
+     * @param  int  $gameid
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function reset(int $game, ResetGameAction $resetGameAction)
+    {
+        return $resetGameAction->execute($game);
     }
 }
