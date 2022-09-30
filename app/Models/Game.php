@@ -10,8 +10,16 @@ class Game extends Model
     use HasFactory;
 
     protected $fillable = [
-        'status'
+        'status',
+        'round_count',
+        'army_winner_id',
     ];
+
+
+    public function winner()
+    {
+        return $this->belongsTo(Army::class, 'army_winner_id');
+    }
 
     public function armies()
     {

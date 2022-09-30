@@ -2,8 +2,9 @@
 
 namespace App\Http\Resources\v1\Game;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\v1\Army\ArmyResource;
 use App\Http\Resources\v1\Army\ArmyCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class GameResource extends JsonResource
 {
@@ -18,6 +19,10 @@ class GameResource extends JsonResource
         return [
             'id' => $this->id,
             'status' => $this->status,
+            'round_count' => $this->round_count,
+            'army_winner' => new ArmyResource($this->whenLoaded('winner')),
+            'armies_count' => $this->armies_count,
+            'remaining_armies_count' => $this->remaining_armies_count,
             'armies' => new ArmyCollection($this->whenLoaded('armies')),
             'remaining_armies' => new ArmyCollection($this->whenLoaded('remaining_armies')),
             'created_at' => $this->created_at,
