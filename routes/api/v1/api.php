@@ -43,6 +43,10 @@ Route::group([], function () {
     });
 
     Route::apiResource('games', GameController::class)->only(['index', 'store', 'show']);
+
+    Route::post('games/{game}/attack', [GameController::class, 'attack']);
+    Route::post('games/{game}/reset', [GameController::class, 'reset']);
+
     Route::apiResource('armies', ArmyController::class)->only(['store']);
 });
 
