@@ -27,13 +27,6 @@ class CreateArmyAction
 
         $game = Game::find($data['game_id']);
 
-        if ($game->status == GameStatusEnum::FINISHED || $game->status == GameStatusEnum::PROCESSING) {
-            // TODO: extract into request validator
-            return response()->json([
-                'message' => "Cannot add armeies, game is {$game->status}",
-            ], 400);
-        }
-
         try {
 
             if ($game->status == GameStatusEnum::ACTIVE) {
