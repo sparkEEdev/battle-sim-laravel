@@ -10,6 +10,7 @@ use App\Actions\Game\CreateGameAction;
 use App\Actions\Game\GetGamesAction;
 use App\Actions\Game\RunAttackGameAction;
 use App\Actions\Game\ResetGameAction;
+use App\Http\Requests\v1\RunAttackGameRequest;
 
 class GameController extends Controller
 {
@@ -95,7 +96,7 @@ class GameController extends Controller
      * @param  int  $gameid
      * @return \Illuminate\Http\JsonResponse
      */
-    public function attack(int $game, RunAttackGameAction $runAttackGameAction)
+    public function attack(RunAttackGameRequest $request, int $game, RunAttackGameAction $runAttackGameAction)
     {
         return $runAttackGameAction->execute($game);
     }
