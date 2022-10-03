@@ -29,12 +29,6 @@ class RunAttackGameAction
     {
         $game = Game::withCount('armies')->find($gameId);
 
-        if ( $game->status == GameStatusEnum::FINISHED || $game->status == GameStatusEnum::PROCESSING ) {
-            return response()->json([
-                'message' => "Cannot run attack, game is {$game->status}",
-            ], 400);
-        }
-
         if ( $game->status == GameStatusEnum::PENDING && $game->armies_count < 5 ) {
             return response()->json([
                 'message' => 'Cannot run attack, add more armies to the game',

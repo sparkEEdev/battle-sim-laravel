@@ -3,11 +3,10 @@
 namespace App\Http\Requests\v1;
 
 use App\Enums\GameStatusEnum;
-use App\Enums\AttackStrategyEnum;
 use App\Rules\GameStatusInactionableRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateArmyRequest extends FormRequest
+class RunAttackGameRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,10 +26,14 @@ class CreateArmyRequest extends FormRequest
     public function rules()
     {
         return [
-            'game_id' => ['bail', 'required', 'integer', 'exists:games,id', new GameStatusInactionableRule(GameStatusEnum::PROCESSING, GameStatusEnum::FINISHED)],
-            'name' => ['required', 'string'],
-            'initial_units' => ['required', 'integer', 'min:80', 'max:100'],
-            'attack_strategy' => ['required', 'string', 'in:' . implode(',', AttackStrategyEnum::getValues())],
+            'game' => ['bail', 'required', 'integer', 'exists:games,id', new GameStatusInactionableRule(GameStatusEnum::PROCESSING, GameStatusEnum::FINISHED)],
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'game' => $this->route('game'),
+        ]);
     }
 }
