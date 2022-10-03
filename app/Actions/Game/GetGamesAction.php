@@ -11,7 +11,7 @@ class GetGamesAction
     public function execute(Request $request): GameCollection
     {
         $games = Game::
-            with(['armies'])
+            withCount(['armies', 'remaining_armies'])
             ->paginate(
                 $request->get('per_page', 10),
                 ['*'],
